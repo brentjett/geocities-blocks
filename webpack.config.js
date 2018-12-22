@@ -26,6 +26,9 @@ const entryPoints = glob.sync( './assets/js/*.js' ).reduce( ( acc, item ) => {
 	return acc;
 }, {} );
 
+// Add Marquee Block Entry Point
+entryPoints['marquee-block'] = path.resolve( __dirname, './assets/js/marquee-block/marquee-block.js' );
+
 /**
  * Config for compiling Gutenberg blocks JS.
  */

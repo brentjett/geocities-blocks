@@ -31,8 +31,19 @@ function geocities_register_block() {
 		'editor_script' => 'geocities-example-block',
 		'editor_style'  => 'geocities-example-block',
 	) );
-	
+
 	// Register more blocks here.
+
+	// Register Marquee Block
+	register_block_type( 'geocities/marquee', array(
+		'editor_script' => 'geocities-marquee-block',
+		'style'  => 'geocities-marquee-block',
+	) );
+
+	// Word Art Block
+	register_block_type( 'geocities/wordart', array(
+		'editor_script' => 'geocities-wordart-block'
+	) );
 }
 
 /**
@@ -51,10 +62,57 @@ function geocities_gutenberg_scripts() {
 		array(),
 		geocities_get_file_version( 'build/example-block.css' )
 	);
-	
+
 	// Register more block scripts & styles here.
+
+	// Marquee Block
+	wp_register_script(
+		'geocities-marquee-block',
+		plugins_url( 'build/marquee-block.js', __FILE__ ),
+		array( 'wp-element', 'wp-editor', 'wp-blocks', 'wp-components', 'wp-i18n' ),
+		geocities_get_file_version( 'build/marquee-block.js' )
+	);
+	wp_register_style(
+		'geocities-marquee-block',
+		plugins_url( 'build/marquee-block.css', __FILE__ ),
+		array(),
+		geocities_get_file_version( 'build/marquee-block.css' )
+	);
+
+	// Wordart Block
+	wp_register_script(
+		'geocities-wordart-block',
+		plugins_url( 'build/word-art-block.js', __FILE__ ),
+		array( 'wp-element', 'wp-editor', 'wp-blocks', 'wp-components', 'wp-i18n', 'geocities-block-style-variations' ),
+		geocities_get_file_version( 'build/word-art-block.js' )
+	);
+
+	// Register block style variations
+	wp_register_script( 'geocities-block-style-variations',
+	   plugins_url( 'build/block-style-variations.js', __FILE__ ),
+	   array( 'wp-blocks')
+   );
 }
 add_action( 'enqueue_block_editor_assets', 'geocities_gutenberg_scripts' );
+
+/**
+ * Setup Frontend Scripts
+ */
+function geocities_gutenberg_frontend_scripts() {
+	wp_enqueue_style(
+		'geocities-marquee-block',
+		plugins_url( 'build/marquee-block.css', __FILE__ ),
+		array(),
+		geocities_get_file_version( 'build/marquee-block.css' )
+	);
+	wp_enqueue_style(
+		'geocities-block-style-variations',
+		plugins_url( 'build/block-style-variations.css', __FILE__ ),
+		array(),
+		geocities_get_file_version( 'build/block-style-variations.css' )
+	);
+}
+add_action( 'enqueue_block_assets', 'geocities_gutenberg_frontend_scripts' );
 
 /**
  * Get the file modified time if we're using SCRIPT_DEBUG.

@@ -1,0 +1,55 @@
+.block-editor {
+    .is-style-gc-rainbow,
+    .is-style-gc-deep-shadow  {
+        margin:0;
+    }
+}
+.is-style-gc-rainbow {
+    font-size: 4em;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: scale(1, 1.5);
+    -webkit-transform: scale(1, 1.5);
+    -moz-transform: scale(1, 1.5);
+    -o-transform: scale(1, 1.5);
+    -ms-transform: scale(1, 1.5);
+
+    .gc-wordart-content {
+        text-align: center;
+        background: red;
+        background: -webkit-linear-gradient(left, #b306a9, #ef2667, #f42e2c, #ffa509, #fdfc00, #55ac2f, #0b13fd, #a804af);
+        background: -o-linear-gradient(left, #b306a9, #ef2667, #f42e2c, #ffa509, #fdfc00, #55ac2f, #0b13fd, #a804af);
+        background: -moz-linear-gradient(left, #b306a9, #ef2667, #f42e2c, #ffa509, #fdfc00, #55ac2f, #0b13fd, #a804af);
+        background: linear-gradient(to right, #b306a9, #ef2667, #f42e2c, #ffa509, #fdfc00, #55ac2f, #0b13fd, #a804af);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+}
+
+.is-style-gc-deep-shadow {
+    font-family: Arial, sans-serif;
+    font-size: 4em;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.2;
+
+    .gc-wordart-content {
+        text-align: center;
+        font-family: Impact, sans-serif;
+        color: #24c0fd;
+        -webkit-text-stroke: 0.01em #0000aa;
+        filter: progid:DXImageTransform.Microsoft.Glow(Color=#0000aa,Strength=1);
+        text-shadow: 0.13em -0.13em 0px #0000aa;
+        letter-spacing: -0.05em;
+    }
+}

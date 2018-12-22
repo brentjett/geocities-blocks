@@ -1,0 +1,27 @@
+
+@keyframes marqueeMoveRTL {
+  0% { left: 0; }
+  100% { left: -100%; }
+}
+
+.gc-marquee, gc-marquee {
+    padding:10px;
+    width: 100%;
+    min-height: 50px;
+    overflow: hidden;
+    position: relative;
+
+}
+.gc-marquee > div {
+    display: flex;
+    flex-direction: row;
+    width: 200%;
+    position: absolute;
+    overflow: hidden;
+}
+.gc-marquee-is-animating > div {
+    animation: marqueeMoveRTL 5s linear infinite;
+}
+.gc-marquee > div > span {
+    flex: 1 1 auto;
+}
