@@ -1,0 +1,28 @@
+@keyframes marqueeMoveRTL {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.gc-marquee {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.gc-marquee > .gc-marquee-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: calc( 200% + 20px );
+    overflow: hidden;
+}
+.gc-marquee-is-editing .gc-marquee-wrapper {
+    width: 100%;
+}
+.gc-marquee-is-animating .gc-marquee-wrapper {
+    animation: marqueeMoveRTL 5s linear infinite;
+}
+.gc-marquee .gc-marquee-wrapper .gc-marquee-content {
+    flex: 1 1 auto;
+}
+.gc-marquee .gc-marquee-wrapper .gc-marquee-content:first-child {
+    margin-right: 20px;
+}

@@ -15,6 +15,8 @@ const externals = {
 	'@wordpress/editor': { this: [ 'wp', 'editor' ] },
 	'@wordpress/element': { this: [ 'wp', 'element' ] },
 	'@wordpress/i18n': { this: [ 'wp', 'i18n' ] },
+	'@wordpress/hooks': { this: [ 'wp', 'hooks' ] },
+	'@wordpress/compose': { this: [ 'wp', 'compose' ] },
 };
 
 /**

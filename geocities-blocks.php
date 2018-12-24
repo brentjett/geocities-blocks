@@ -34,12 +34,6 @@ function geocities_register_block() {
 
 	// Register more blocks here.
 
-	// Register Marquee Block
-	register_block_type( 'geocities/marquee', array(
-		'editor_script' => 'geocities-marquee-block',
-		'style'  => 'geocities-marquee-block',
-	) );
-
 	// Word Art Block
 	register_block_type( 'geocities/wordart', array(
 		'editor_script' => 'geocities-wordart-block'
@@ -65,18 +59,17 @@ function geocities_gutenberg_scripts() {
 
 	// Register more block scripts & styles here.
 
-	// Marquee Block
-	wp_register_script(
-		'geocities-marquee-block',
-		plugins_url( 'build/marquee-block.js', __FILE__ ),
-		array( 'wp-element', 'wp-editor', 'wp-blocks', 'wp-components', 'wp-i18n' ),
-		geocities_get_file_version( 'build/marquee-block.js' )
+	// Heading Additions
+	wp_enqueue_script( 'geocities-heading-block-additions',
+		plugins_url( 'build/heading-additions.js', __FILE__ ),
+		array( 'wp-blocks'),
+		geocities_get_file_version( 'build/heading-additions.js' )
 	);
-	wp_register_style(
-		'geocities-marquee-block',
-		plugins_url( 'build/marquee-block.css', __FILE__ ),
+	wp_enqueue_style(
+		'geocities-heading-additions',
+		plugins_url( 'build/heading-additions.css', __FILE__ ),
 		array(),
-		geocities_get_file_version( 'build/marquee-block.css' )
+		geocities_get_file_version( 'build/heading-additions.css' )
 	);
 
 	// Wordart Block
@@ -100,10 +93,10 @@ add_action( 'enqueue_block_editor_assets', 'geocities_gutenberg_scripts' );
  */
 function geocities_gutenberg_frontend_scripts() {
 	wp_enqueue_style(
-		'geocities-marquee-block',
-		plugins_url( 'build/marquee-block.css', __FILE__ ),
+		'geocities-heading-additions',
+		plugins_url( 'build/heading-additions.css', __FILE__ ),
 		array(),
-		geocities_get_file_version( 'build/marquee-block.css' )
+		geocities_get_file_version( 'build/heading-additions.css' )
 	);
 	wp_enqueue_style(
 		'geocities-block-style-variations',
