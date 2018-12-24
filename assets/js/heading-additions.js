@@ -39,7 +39,9 @@ const edit = createHigherOrderComponent( BlockEdit => {
         const { marquee } = attributes;
 
         // Only dealing with core/heading blocks
-        if ( 'core/heading' !== name ) return <BlockEdit { ...props } />;
+        if ( 'core/heading' !== name ) {
+            return <BlockEdit { ...props } />;
+        }
 
         const classes = classname({
             'gc-marquee': true,
@@ -49,6 +51,8 @@ const edit = createHigherOrderComponent( BlockEdit => {
 
         return (
             <Fragment>
+                { !marquee && <BlockEdit { ...props } /> }
+                { marquee &&
                 <div className={classes}>
                     <div className="gc-marquee-wrapper">
                         <span className="gc-marquee-content">
@@ -59,7 +63,7 @@ const edit = createHigherOrderComponent( BlockEdit => {
             				<BlockEdit { ...props } />
             			</span> }
                     </div>
-                </div>
+                </div> }
 
                 <InspectorControls>
                     <PanelBody title={ __( 'Marquee Settings', 'geocities-blocks' ) }>
