@@ -2,6 +2,10 @@
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
 }
+@keyframes marqueeMoveLTR {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
 
 .gc-marquee {
     width: 100%;
@@ -18,11 +22,13 @@
     width: 100%;
 }
 .gc-marquee-is-animating .gc-marquee-wrapper {
-    animation: marqueeMoveRTL 5s linear infinite;
+    animation: marqueeMoveRTL linear infinite;
+    animation-duration: 5s;
+}
+.gc-marquee-is-animating.gc-marquee-is-reversed .gc-marquee-wrapper {
+    animation: marqueeMoveLTR linear infinite;
+    animation-duration: 5s;
 }
 .gc-marquee .gc-marquee-wrapper .gc-marquee-content {
     flex: 1 1 auto;
-}
-.gc-marquee .gc-marquee-wrapper .gc-marquee-content:first-child {
-    margin-right: 20px;
 }

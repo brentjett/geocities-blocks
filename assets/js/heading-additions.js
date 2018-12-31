@@ -19,6 +19,9 @@ const addAttribute = ( settings, name ) => {
     settings.attributes = Object.assign({}, attributes, {
         marquee: {
             default: false
+        },
+        isReversed: {
+            default: false
         }
     });
 
@@ -36,7 +39,7 @@ addFilter(
 const edit = createHigherOrderComponent( BlockEdit => {
     return props => {
         const { name, isSelected, attributes, setAttributes } = props;
-        const { marquee } = attributes;
+        const { marquee, isReversed } = attributes;
 
         // Only dealing with core/heading blocks
         if ( 'core/heading' !== name ) {
@@ -46,8 +49,9 @@ const edit = createHigherOrderComponent( BlockEdit => {
         const classes = classname({
             'gc-marquee': true,
             'gc-marquee-is-animating': marquee && !isSelected,
-            'gc-marquee-is-editing' : marquee && isSelected
-        })
+            'gc-marquee-is-editing' : marquee && isSelected,
+            'gc-marquee-is-reversed': marquee && isReversed,
+        });
 
         return (
             <Fragment>
@@ -72,6 +76,11 @@ const edit = createHigherOrderComponent( BlockEdit => {
                             checked={marquee}
                             onChange={ value => setAttributes( { marquee: value } ) }
                         />
+                        <ToggleControl
+                            label={ __( 'Reverse Direction' ) }
+                            checked={isReversed}
+                            onChange={ value => setAttributes( { isReversed: value } ) }
+                        />
                     </PanelBody>
                 </InspectorControls>
             </Fragment>
@@ -89,13 +98,18 @@ addFilter(
  * Alter how headings get saved.
  */
 const saveHeading = ( element, blockType, attributes ) => {
-    const { marquee } = attributes;
+    const { marquee, isReversed } = attributes;
+    const classes = classname({
+        'gc-marquee': marquee,
+        'gc-marquee-is-animating': marquee,
+        'gc-marquee-is-reversed': marquee && isReversed,
+    });
 
     if ( 'core/heading' !== blockType.name || !marquee ) {
         return element;
     }
 	return (
-        <div className="gc-marquee gc-marquee-is-animating">
+        <div className={classes}>
             <div className="gc-marquee-wrapper">
                 <span className="gc-marquee-content">{element}</span>
                 <span className="gc-marquee-content">{element}</span>
